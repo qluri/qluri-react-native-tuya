@@ -437,7 +437,7 @@ RCT_EXPORT_METHOD(loginByAuth2:(NSDictionary *)params resolver:(RCTPromiseResolv
   NSString *countryCode = params[kTuyaRNUserModuleCountryCode];
   NSString *accessToken = params[kTuyaRNUserModuleGoogleAccessToken];
 
-  [[TuyaSmartUser sharedInstance] loginByAuth2:withType countryCode:countryCode accessToken:accessToken success:^{
+    [[TuyaSmartUser sharedInstance] loginByAuth2WithType:withType countryCode:countryCode accessToken:accessToken extraInfo:@{@"pubVersion": @1} success:^{
     [TuyaRNUtils resolverWithHandler:resolver];
   } failure:^(NSError *error) {
     [TuyaRNUtils rejecterWithError:error handler:rejecter];
