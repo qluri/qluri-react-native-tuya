@@ -427,17 +427,17 @@ RCT_EXPORT_METHOD(loginByFacebook:(NSDictionary *)params resolver:(RCTPromiseRes
 }
 
 
-/* Google登录
-* @param countryCode 国家区号
-* @param code     token facebook授权登录获取的token
+/* Google
+* @param countryCode
+* @param accessToken     idToken from Google
  */
-RCT_EXPORT_METHOD(loginByAuth2:(NSDictionary *)params resolver:(RCTPromiseResolveBlock)resolver rejecter:(RCTPromiseRejectBlock)rejecter) {
+RCT_EXPORT_METHOD(loginByGoogle:(NSDictionary *)params resolver:(RCTPromiseResolveBlock)resolver rejecter:(RCTPromiseRejectBlock)rejecter) {
 
   NSString *withType = params[kTuyaRNUserModuleAuth2Type];
   NSString *countryCode = params[kTuyaRNUserModuleCountryCode];
   NSString *accessToken = params[kTuyaRNUserModuleGoogleAccessToken];
 
-    [[TuyaSmartUser sharedInstance] loginByAuth2WithType:withType countryCode:countryCode accessToken:accessToken extraInfo:@{@"pubVersion": @1} success:^{
+  [[TuyaSmartUser sharedInstance] loginByAuth2WithType:@"gg" countryCode:countryCode accessToken:accessToken extraInfo:@{@"pubVersion": @1} success:^{
     [TuyaRNUtils resolverWithHandler:resolver];
   } failure:^(NSError *error) {
     [TuyaRNUtils rejecterWithError:error handler:rejecter];

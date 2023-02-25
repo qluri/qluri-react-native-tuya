@@ -18,8 +18,8 @@ export function loginWithEmail(params: LoginWithEmailParams): Promise<any> {
   return tuya.loginWithEmail(params);
 }
 
-export function loginByAuth2(params: LoginByAuth2): Promise<any> {
-  return tuya.loginByAuth2(params);
+export function loginByGoogle(params: LoginByGoogle): Promise<any> {
+  return tuya.loginByGoogle(params);
 }
 
 export function getEmailValidateCode(
@@ -78,8 +78,7 @@ export type LoginWithEmailParams = {
   password: string;
   countryCode: string;
 };
-export type LoginByAuth2 = {
-  withType: 'gg',
+export type LoginByGoogle = {
   countryCode: string;
   accessToken: string; // idToken from google
 };
