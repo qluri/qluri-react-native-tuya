@@ -43,12 +43,12 @@
 RCT_EXPORT_MODULE(TuyaUserModule)
 
 //版本检测
-RCT_EXPORT_METHOD(checkVersionUpgrade:(NSDictionary *)params resolver:(RCTPromiseResolveBlock)resolver rejecter:(RCTPromiseRejectBlock)rejecter) {
+/*RCT_EXPORT_METHOD(checkVersionUpgrade:(NSDictionary *)params resolver:(RCTPromiseResolveBlock)resolver rejecter:(RCTPromiseRejectBlock)rejecter) {
 
   if(resolver) {
     resolver([NSNumber numberWithBool:[[TuyaSmartSDK sharedInstance] checkVersionUpgrade]]);
   }
-}
+}*/
 
 //版本升级
 RCT_EXPORT_METHOD(upgradeVersion:(NSDictionary *)params resolver:(RCTPromiseResolveBlock)resolver rejecter:(RCTPromiseRejectBlock)rejecter) {
@@ -437,11 +437,15 @@ RCT_EXPORT_METHOD(loginByGoogle:(NSDictionary *)params resolver:(RCTPromiseResol
   NSString *countryCode = params[kTuyaRNUserModuleCountryCode];
   NSString *accessToken = params[kTuyaRNUserModuleGoogleAccessToken];
 
-  [[TuyaSmartUser sharedInstance] loginByAuth2WithType:@"gg" countryCode:countryCode accessToken:accessToken extraInfo:@{@"pubVersion": @1} success:^{
-    [TuyaRNUtils resolverWithHandler:resolver];
-  } failure:^(NSError *error) {
-    [TuyaRNUtils rejecterWithError:error handler:rejecter];
-  }];
+    [[TuyaSmartUser sharedInstance] loginByAuth2WithType:@"gg"
+                                                 countryCode:countryCode
+                                                 accessToken:accessToken
+                                                    extraInfo:@{@"pubVersion": @1}
+        success:^{
+            NSLog(@"login success");
+        } failure:^(NSError *error) {
+            NSLog(@"login failure: %@", error);
+        }];
 }
 
 
@@ -507,4 +511,3 @@ RCT_EXPORT_METHOD(onDestory:(NSDictionary *)params) {
 }
 
 @end
-
