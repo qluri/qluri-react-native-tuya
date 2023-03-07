@@ -350,7 +350,7 @@ RCT_EXPORT_METHOD(loginOrRegisterWithUid:(NSDictionary *)params resolver:(RCTPro
   NSString *uid = params[kTuyaRNUserModuleUid];
   NSString *password = params[kTuyaRNUserModulePassword];
 
-  [[TuyaSmartUser sharedInstance] loginOrRegisterWithCountryCode:countryCode uid:uid password:password success:^{
+  [[TuyaSmartUser sharedInstance] loginOrRegisterWithCountryCode:countryCode uid:uid password:password createHome:YES success:^{
     [TuyaRNUtils resolverWithHandler:resolver];
   } failure:^(NSError *error) {
     [TuyaRNUtils rejecterWithError:error handler:rejecter];
