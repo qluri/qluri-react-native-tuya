@@ -351,7 +351,13 @@ RCT_EXPORT_METHOD(loginOrRegisterWithUid:(NSDictionary *)params resolver:(RCTPro
   NSString *password = params[kTuyaRNUserModulePassword];
 
     [[TuyaSmartUser sharedInstance] loginOrRegisterWithCountryCode:countryCode uid:uid password:password createHome:YES success:^(id result) {
-    [TuyaRNUtils resolverWithHandler:resolver];
+    
+    NSMutableDictionary *returnUser = [NSMutableDictionary dictionary];
+    [returnUser setObject: result[@"uid"]  forKey: @"uid"];
+    [returnUser setObject: result[@"username"] forKey:  @"username"];
+    [returnUser setObject: result[@"gid"] forKey:  @"gid"];
+
+    resolver(returnUser);
   } failure:^(NSError *error) {
     [TuyaRNUtils rejecterWithError:error handler:rejecter];
   }];
