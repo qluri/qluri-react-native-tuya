@@ -7,17 +7,10 @@ const tuyaSmartActivator = NativeModules.TuyaActivatorModule;
 const tuyaBLEActivator = NativeModules.TuyaBLEActivatorModule;
 const tuyaBLEScanner = NativeModules.TuyaBLEScannerModule;
 
-const tuyaAP = NativeModules.TuyaBLEScannerModule;
-
-
-export function qGetTokenWithHomeId(
-  params: any
-) {
+export function qGetTokenWithHomeId(params: any) {
   return tuyaSmartActivator.tuyaSmartActivator;
 }
-export function qStartConfigWiFi(
-  params: any
-) {
+export function qStartConfigWiFi(params: any) {
   return tuyaSmartActivator.tuyaSmartActivator;
 }
 

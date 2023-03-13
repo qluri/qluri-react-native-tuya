@@ -32,6 +32,7 @@ export type DeviceDetailResponse = {
   dps: DeviceDps;
   homeDisplayOrder: number;
   roomId: number;
+  uuid: string;
 };
 export type GetHomeDetailResponse = {
   deviceList: DeviceDetailResponse[];
